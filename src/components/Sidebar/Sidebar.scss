@@ -1,0 +1,62 @@
+.main-sidebar {
+  width: 30%;
+  flex: 0 0 22em;
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+.sidebar-hotel {
+  overflow: hidden;
+  margin: 14px;
+  display: flex;
+
+  img {
+    margin-top: 10px;
+    width: 31%;
+    height: 63px;
+    overflow: hidden;
+    border-radius: 10%;
+  }
+  &__information {
+    margin-left: 15px;
+    line-height: 1;
+    width: 60%;
+    text-align: left;
+  }
+}
+
+.sidebar-hotel-name {
+  font-size: 0.8rem;
+  margin-top: 10px;
+  margin-bottom: 0.5em;
+}
+
+.location {
+  margin-top: 0.1em;
+  font-size: 0.8em;
+  margin-bottom: 0.2em;
+}
+
+.title {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 1.5em;
+  line-height: 1em;
+}
+
+.price {
+  margin-top: 0.5em;
+  background-color: rgb(190, 27, 62);
+  font-size: 0.6em;
+  padding: 0.5em 0 0.5em 0;
+  text-align: center;
+  border-radius: 15%;
+  color: white;
+  font-weight: bold;
+  width: 50px;
+}
+
+.arrow {
+  font-size: 2em;
+  font-weight: lighter;
+}
