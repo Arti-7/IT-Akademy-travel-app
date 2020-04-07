@@ -1,9 +1,72 @@
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: 30px 0 5px 0;
+  align-items: center;
 
-  .search-field {
-    width: 450px;
+  .search-bar{
+    display: flex;
+    height:30px;
+    width: 250px;
+    margin: 0px 0 15px 0;
+    position: relative;
+
+    img {
+      height: 35px;
+      width: 35px;
+      padding: 4px;
+      border: solid #dedede 1px;
+      border-radius: 50%
+    }
   }
+  
+  .search-field {
+width: 100%;
+border: none;
+height: 30px;
+padding-left: 7px;
+border-bottom: black inset 1px;
+  }
+
+  .search-field:focus {
+    outline: none;
+  }
+.lower-line{
+display: flex;
+justify-content: center;
+margin: 0 0 15px 0;
+height: 30px;
+
+.tools{
+  background-color: white;
+  border-radius: 50px;
+  border: 1px solid #dedede;
+  margin: 0 10px 0 10px;
+  padding-bottom: 3px;
+}
+.tools:focus {
+  outline-style: initial;
+}
+.price-bar {
+  display: flex;
+  padding-left: 5px;
+  border-radius: 50px;
+  border: #dedede solid 1px;
+  width: 130px;
+  margin: 0 10px 0 10px;
+  align-items: center;
+
+.price-field {
+  border: none;
+  width: 80px;
+  border-radius: 50px;
+  margin-left: 10px;
+}
+
+.price-field:focus {
+  outline: none;
+}
+
+}
+}
 }

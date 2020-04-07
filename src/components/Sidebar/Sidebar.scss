@@ -1,7 +1,7 @@
 .main-sidebar {
   width: 30%;
   flex: 0 0 22em;
-  padding-top: 30px;
+  padding-top: 25px;
   padding-left: 20px;
 }
 
@@ -59,4 +59,8 @@
 .arrow {
   font-size: 2em;
   font-weight: lighter;
+}
+
+.arrow:hover {
+  font-weight: bold;
 }

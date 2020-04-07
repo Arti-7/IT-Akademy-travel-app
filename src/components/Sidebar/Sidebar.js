@@ -12,7 +12,7 @@ class Sidebar extends React.Component {
           return (
             <div className="sidebar-hotel">
               <img src={element.image} />
-              <div className="sidebar-hotel__information">
+              <div className="sidebar-hotel__information  d-flex flex-column bd-highlight mb-3">
                 <p className="sidebar-hotel-name font-weight-bolder">
                   {element.title}
                 </p>
