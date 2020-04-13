@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div className="main-sidebar">
-      <AddHotel/>
+      {/* <AddHotel/> */}
         <p className="title font-weight-bolder">More than just hotels</p>
         {this.props.sidebar_data.map((element,index) => {
           return (
@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
                   {element.title}
                 </p>
                 <p className="location text-muted">{element.location}</p>
-                <div className="price">{element.price}$</div>
+                <div className="price">{element.price}{this.props.symbol}</div>
               </div>
               <div className="arrow d-flex align-items-center text-muted">
                 &#8250;

@@ -51,7 +51,7 @@ class Header extends React.Component {
               placeholder="Min. price"
               onChange={this.handleFilterPrice}
             />
-            $
+            {this.props.symbol}
           </div>
           <select className="converter" onChange={this.handleConvertion}>
             <option value="USD">USD</option>

@@ -148,6 +148,8 @@ class App extends React.Component {
     sort: true,
     currency: "USD",
     symbol: "$",
+    searchLocation: "",
+    searchPrice: 0,
   };
 
   convertValues = (value) => {
@@ -163,23 +165,23 @@ class App extends React.Component {
       currency: value,
       symbol: i,
     })
-    const dataCopy = JSON.parse(JSON.stringify(data));
-    const hotelsNew = dataCopy.map((hotel) => {
-      hotel.price = Math.round(parseInt(hotel.price) * rates[value])
-      return hotel
-    });
+    // const dataCopy = JSON.parse(JSON.stringify(data));
+    // const hotelsNew = dataCopy.map((hotel) => {
+    //   hotel.price = Math.round(parseInt(hotel.price) * rates[value])
+    //   return hotel
+    // });
 
-    this.setState({
-      hotels: hotelsNew
-    });
+    // this.setState({
+    //   hotels: hotelsNew
+    // });
   };
 
   filterHotels = (price, name) => {
-   // const dataConverted = JSON.parse(JSON.stringify(data));
+  //  const dataConverted = JSON.parse(JSON.stringify(data));
 
-    // for (let i of data) {
-    //   i.price = Math.round(i.price * rates[this.state.currency]);
-    // }
+  //   for (let i of data) {
+  //     i.price = Math.round(i.price * rates[this.state.currency]);
+  //   }
    let filteredHotels = data;
 
     if (name !== undefined) {
@@ -197,6 +199,8 @@ class App extends React.Component {
 
     this.setState({
       hotels: filteredHotels,
+      searchLocation: name,
+      searchPrice: price
     });
   };
 
@@ -228,6 +232,7 @@ class App extends React.Component {
       sort: !this.state.sort,
       hotels: this.sortHotels(),
     });
+    this.filterHotels(this.state.searchPrice, this.state.searchLocation)
   };
 
   componentDidMount() {
@@ -247,16 +252,34 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.currency !== prevState.currency) {
-      const dataCopy = JSON.parse(JSON.stringify(data));
-      const hotelsNew = dataCopy.map((hotel) => {
+      if (prevState.currency == "USD") {
+        for (let i of data) {
+          i.defaultPrice = JSON.parse(JSON.stringify(i.price));
+        }
+        for (let i of sidebar_data) {
+          i.defaultPrice = JSON.parse(JSON.stringify(i.price));
+        }
+      }
+      const hotelsNew = data.map((hotel) => {
         hotel.price = Math.round(
-          parseInt(hotel.price) * rates[this.state.currency]
+          parseInt(hotel.defaultPrice) * rates[this.state.currency]
         );
         return hotel;
       });
+
+      const sideHotelsNew = sidebar_data.map((hotel) => {
+        hotel.price = Math.round(
+          parseInt(hotel.defaultPrice) * rates[this.state.currency]
+        );
+        return hotel;
+      });
+
       this.setState({
         hotels: hotelsNew,
+        bestHotels: sideHotelsNew
       });
+      this.filterHotels(this.state.searchPrice, this.state.searchLocation)
+      
     }
   }
 
@@ -268,9 +291,10 @@ class App extends React.Component {
           sort={this.state.sort}
           switchSort={this.switchSort}
           convertValues={this.convertValues}
+          symbol={this.state.symbol}
         />
         <div className="MainSection">
-          <Sidebar sidebar_data={this.state.bestHotels} />
+          <Sidebar sidebar_data={this.state.bestHotels} symbol={this.state.symbol}/>
           <MainContainer data={this.state.hotels} symbol={this.state.symbol} />
         </div>
       </div>
