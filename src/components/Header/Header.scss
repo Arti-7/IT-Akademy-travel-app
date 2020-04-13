@@ -69,4 +69,18 @@ height: 30px;
 
 }
 }
+.converter {
+  background-color: white;
+  border-radius: 50px;
+  border: 1px solid #dedede;
+  margin: 0 10px 0 10px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  width: 60px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.converter:focus {
+  outline: none;
+}
 }
