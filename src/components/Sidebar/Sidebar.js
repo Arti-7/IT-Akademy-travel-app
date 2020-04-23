@@ -1,16 +1,23 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import "./Sidebar.scss";
-import sidebar_data from "../../utils/sidebar_data";
-import AddHotel from '../AddHotel/AddHotel';
+import Modal from "../../components/Modal/Modal";
 
 class Sidebar extends React.Component {
+  state = {
+    modalOpen: false,
+  };
+
+  toggleModal = () => {
+    this.setState((state) => ({ modalOpen: !state.modalOpen }));
+  };
+
   render() {
     return (
       <div className="main-sidebar">
-      {/* <AddHotel/> */}
         <p className="title font-weight-bolder">More than just hotels</p>
-        {this.props.sidebar_data.map((element,index) => {
+
+        {this.props.sidebar_data.map((element, index) => {
           return (
             <div className="sidebar-hotel" key={index}>
               <img src={element.image} />
@@ -19,7 +26,10 @@ class Sidebar extends React.Component {
                   {element.title}
                 </p>
                 <p className="location text-muted">{element.location}</p>
-                <div className="price">{element.price}{this.props.symbol}</div>
+                <div className="price">
+                  {element.price}
+                  {this.props.symbol}
+                </div>
               </div>
               <div className="arrow d-flex align-items-center text-muted">
                 &#8250;
@@ -27,6 +37,20 @@ class Sidebar extends React.Component {
             </div>
           );
         })}
+
+        {!this.state.modalOpen && (
+          <div className="add-btn">
+            <button
+              className="btn btn-primary"
+              style={{ width: "50%" }}
+              onClick={this.toggleModal}
+              hidden={this.modalOpen}
+            >
+              Add Hotel
+            </button>
+          </div>
+        )}
+        {this.state.modalOpen && <Modal onClose={this.toggleModal}></Modal>}
       </div>
     );
   }

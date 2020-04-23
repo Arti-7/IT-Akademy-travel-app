@@ -1,0 +1,38 @@
+.add-container {
+  // height: 220px;
+  // width: 100%;
+  // background-color: cadetblue;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border-radius: 5px;
+  border: lightgrey solid 1px;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+  width: 300px;
+}
+
+.add-input {
+  width: 300px;
+}
+
+.add-buttons {
+  padding: 2px;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  padding: 2px;
+  width: 300px;
+}

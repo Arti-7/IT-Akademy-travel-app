@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
+import {Lines} from "react-preloaders"
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
@@ -7,6 +8,7 @@ import App from "./App";
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <Lines/>
   </React.StrictMode>,
   document.getElementById("root")
 );
