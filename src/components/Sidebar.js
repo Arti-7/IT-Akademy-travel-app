@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import "./Sidebar.scss";
-import Modal from "../../components/Modal/Modal";
+import "../styles/Sidebar.scss";
+import Modal from "./Modal";
+import Spinner from "../icons/Spinner.svg"
 
 class Sidebar extends React.Component {
   state = {
@@ -14,6 +15,7 @@ class Sidebar extends React.Component {
 
   render() {
     return (
+      this.props.sidebar_data.length > 0 ? 
       <div className="main-sidebar">
         <p className="title font-weight-bolder">More than just hotels</p>
 
@@ -52,7 +54,7 @@ class Sidebar extends React.Component {
         )}
         {this.state.modalOpen && <Modal onClose={this.toggleModal}></Modal>}
       </div>
-    );
+     : <div className="spinner-side"><img src={Spinner} style={{width: "300px"}}/></div>);
   }
 }
 

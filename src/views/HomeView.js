@@ -1,9 +1,9 @@
 import React from "react";
-import MainContainer from "../../components/Main Container/MainContainer";
-import Header from "../../components/Header/Header";
-import sidebar_data from "../../utils/sidebar_data";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import rates from "../../utils/rates"
+import MainContainer from "../components/MainContainer";
+import Header from "../components/Header";
+import sidebar_data from "../utils/sidebar_data";
+import Sidebar from "../components/Sidebar";
+import rates from "../utils/rates"
 import axios from 'axios';
 
 class HomeView extends React.Component {
@@ -15,7 +15,7 @@ class HomeView extends React.Component {
     symbol: "$",
     searchLocation: "",
     searchPrice: 0,
-    dataFromApi: null,
+    dataFromApi: [],
   };
 
   convertValues = (value) => {
@@ -102,14 +102,14 @@ class HomeView extends React.Component {
     axios.get('https://nodejs-mysql-it-academy.herokuapp.com/hotels')
     .then((res) => {
       this.setState({
-        dataFromApi: res.data
+        dataFromApi: res.data,        
       })
       this.switchSort();
     })
     axios.get('https://nodejs-mysql-it-academy.herokuapp.com/hotels/recommended')
     .then((rec) => {
       this.setState({
-        bestHotels: rec.data,
+        bestHotels: rec.data,       
       })
     })
 
@@ -167,7 +167,9 @@ class HomeView extends React.Component {
             symbol={this.state.symbol}
           />
           <React.Fragment>
-          <MainContainer data={this.state.hotels} symbol={this.state.symbol} />
+          <MainContainer 
+          data={this.state.hotels} 
+          symbol={this.state.symbol} />
           </React.Fragment>
         </div>
       </div>

@@ -1,10 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import "./Header.scss";
-import search from "../../icons/search.svg";
-import data from "../../utils/data";
-import "../../App";
-import "../../utils/rates"
+import "../styles/Header.scss";
+import search from "../icons/search.svg";
+import "../App";
+import "../utils/rates"
 
 class Header extends React.Component {
   state = {

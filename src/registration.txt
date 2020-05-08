@@ -1,0 +1,5 @@
+registration
+login and token receive
+save token to local storage
+token verification
+send token in header for auth requests

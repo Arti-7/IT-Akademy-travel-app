@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import "./AddHotel.scss";
+import "../styles/AddHotel.scss";
 
 class AddHotel extends React.Component {
   state = {

@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import React from "react";
-import "./Modal.scss";
+import "../styles/Modal.scss";
 
 export default class Modal extends React.Component {
   state = {
