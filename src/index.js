@@ -1,14 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import {Lines} from "react-preloaders"
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
+import {Provider} from "react-redux";
+import store from "./store"
 
 ReactDOM.render(
   <React.StrictMode>
+  <Provider store={store}>
     <App />
-    {/* <Lines/> */}
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

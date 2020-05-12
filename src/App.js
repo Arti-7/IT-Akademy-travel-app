@@ -9,7 +9,8 @@ import TopBar from "./components/TopBar";
 import axios from 'axios';
 import {url} from "./utils/api";
 import PrivateRoute from './PrivateRoute';
-import AddHotelView from "./views/AddHotelView"
+import AddHotelView from "./views/AddHotelView";
+import Contacts from "./views/Contacts"
 
 class App extends React.Component {
 
@@ -64,15 +65,6 @@ componentDidMount(){
         user={this.state.user}
         verifyUserStatus={this.verifyUserStatus}/>
           <Switch>
-            {/* <PrivateRoute 
-            path="/add-hotel" 
-            component={HotelView} 
-              isAuthorized={this.state.isAuthorized}
-            />
-            <Route path="/Login" component={LoginView} />
-            <Route path="/Register" component={RegisterView} />
-            <Route path="/hotel/:id" component={AddHotelView} />
-            <Route path="/" component={HomeView} /> */}
 
             <Route 
               path="/hotel/:id" 
@@ -80,6 +72,7 @@ componentDidMount(){
             />
             <Route path="/login" component={LoginView} />
             <Route path="/register" component={RegisterView} />
+            <Route path="/contacts" component={Contacts} />
             <PrivateRoute 
               path="/add-hotel" 
               component={AddHotelView}

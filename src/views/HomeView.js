@@ -5,6 +5,8 @@ import sidebar_data from "../utils/sidebar_data";
 import Sidebar from "../components/Sidebar";
 import rates from "../utils/rates"
 import axios from 'axios';
+import {connect} from "react-redux";
+import saveHotels from "../store/actions/hotels-actions";
 
 class HomeView extends React.Component {
   state = {
@@ -103,7 +105,7 @@ class HomeView extends React.Component {
     .then((res) => {
       this.setState({
         dataFromApi: res.data,        
-      })
+      });
       this.switchSort();
     })
     axios.get('https://nodejs-mysql-it-academy.herokuapp.com/hotels/recommended')
@@ -176,4 +178,13 @@ class HomeView extends React.Component {
     );
   }
 }
-export default HomeView;
+
+const mapStateToProps = (state) => ({
+hotels: state.hotels
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  saveHotelsToRedux: (hotels) => dispatch.saveHotels(hotels),
+})
+
+export default connect(mapStateToProps) (HomeView);

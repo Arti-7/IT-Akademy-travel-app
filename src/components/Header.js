@@ -3,7 +3,9 @@ import React from "react";
 import "../styles/Header.scss";
 import search from "../icons/search.svg";
 import "../App";
-import "../utils/rates"
+import "../utils/rates";
+import {connect} from "react-redux";
+import {saveText} from "../store/actions/hotels-actions"
 
 class Header extends React.Component {
   state = {
@@ -29,11 +31,15 @@ class Header extends React.Component {
   this.props.convertValues(event.target.value);
   };
 
+  handleClick = () => {
+    this.props.dispatch(saveText("new text is here"));
+  };
+
   render(props) {
     return (
       <div className="header">
         <div className="search-bar">
-          <img src={search} />
+          <img src={search}/>
           <input
             type="text"
             className="search-field"
@@ -65,9 +71,18 @@ class Header extends React.Component {
             onClick={this.props.switchSort}
           />
         </div>
+        
+<input type="button" value="click" onClick={this.handleClick} />
+{this.props.savedText}
       </div>
     );
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    savedText: state.text,
+  }
+}
+
+export default connect(mapStateToProps)(Header);
