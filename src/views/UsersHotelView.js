@@ -3,12 +3,11 @@ import MainContainer from "../components/MainContainer";
 import Header from "../components/Header";
 import sidebar_data from "../utils/sidebar_data";
 import Sidebar from "../components/Sidebar";
-import rates from "../utils/rates"
-import axios from 'axios';
-import {connect} from "react-redux";
-import {getHotels} from "../store/actions/hotels-actions";
+import rates from "../utils/rates";
+import axios from "axios";
+import { connect } from "react-redux";
 
-class HomeView extends React.Component {
+class UsersHotelView extends React.Component {
   state = {
     hotels: [],
     bestHotels: [],
@@ -43,7 +42,6 @@ class HomeView extends React.Component {
       symbol: i,
     });
   };
-
 
   filterHotels = (price, name) => {
     let filteredHotels = this.state.dataFromApi;
@@ -91,7 +89,6 @@ class HomeView extends React.Component {
     });
   };
 
-
   switchSort = () => {
     this.setState({
       sort: !this.state.sort,
@@ -101,23 +98,29 @@ class HomeView extends React.Component {
   };
 
   componentDidMount() {
-    axios
-    .get('https://nodejs-mysql-it-academy.herokuapp.com/hotels')
-    .then((res) => {
-      this.setState({
-        dataFromApi: res.data,        
-      });
-      this.switchSort();
-    })
-    // this.props.getHotels();
-    // this.switchSort();
-    axios.get('https://nodejs-mysql-it-academy.herokuapp.com/hotels/recommended')
-    .then((rec) => {
-      this.setState({
-        bestHotels: rec.data,       
-      })
-    })
+    const token = localStorage.getItem("token");
+    const options = {
+      headers: {
+        "x-access-token": token,
+      },
+    };
 
+    axios
+      .get("https://nodejs-mysql-it-academy.herokuapp.com/my-hotels", options)
+      .then((res) => {
+        this.setState({
+          dataFromApi: res.data,
+        });
+        console.log(this.state.dataFromApi);
+        this.switchSort();
+      });
+    axios
+      .get("https://nodejs-mysql-it-academy.herokuapp.com/hotels/recommended")
+      .then((rec) => {
+        this.setState({
+          bestHotels: rec.data,
+        });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -152,13 +155,9 @@ class HomeView extends React.Component {
     }
   }
 
-
-
-
-  
   render() {
     return (
-      <div>     
+      <div>
         <Header
           filterHotels={this.filterHotels}
           sort={this.state.sort}
@@ -172,9 +171,10 @@ class HomeView extends React.Component {
             symbol={this.state.symbol}
           />
           <React.Fragment>
-          <MainContainer 
-          data={this.state.hotels} 
-          symbol={this.state.symbol} />
+            <MainContainer
+              data={this.state.hotels}
+              symbol={this.state.symbol}
+            />
           </React.Fragment>
         </div>
       </div>
@@ -183,11 +183,11 @@ class HomeView extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-hotels: state.hotels
-})
+  hotels: state.hotels,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  getHotels: (hotels) => dispatch(getHotels()),
-})
+  saveHotelsToRedux: (hotels) => dispatch.saveHotels(hotels),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps) (HomeView);
+export default connect(mapStateToProps)(UsersHotelView);

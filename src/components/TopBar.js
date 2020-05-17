@@ -15,6 +15,7 @@ class TopBar extends React.Component {
 
   render() {
     const { isAuthorized, user } = this.props;
+    console.log({ user });
     return (
       <nav className=" topContainer nav d-flex justify-content-between">
         <div className="topLogo">
@@ -47,6 +48,9 @@ class TopBar extends React.Component {
             </Link>
             <Link to="/add-hotel" className="nav-link active">
               Add Hotel
+            </Link>
+            <Link to="/my-hotels" className="nav-link active">
+              My Hotels
             </Link>
             <Link
               to="/"

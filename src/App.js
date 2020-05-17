@@ -10,6 +10,7 @@ import axios from 'axios';
 import {url} from "./utils/api";
 import PrivateRoute from './PrivateRoute';
 import AddHotelView from "./views/AddHotelView";
+import UsersHotelView from "./views/UsersHotelView";
 import Contacts from "./views/Contacts"
 
 class App extends React.Component {
@@ -38,6 +39,7 @@ if (token && token.length > 0) {
         user: response.data,
         isAuthorized: true
       })
+      console.log(this.state.user)
       console.log(this.state.isAuthorized)
     })
 
@@ -76,6 +78,12 @@ componentDidMount(){
             <PrivateRoute 
               path="/add-hotel" 
               component={AddHotelView}
+              isAuthorized={this.state.isAuthorized}
+            />
+                        <PrivateRoute 
+              path="/my-hotels" 
+              component={UsersHotelView}
+              user={this.state.user}
               isAuthorized={this.state.isAuthorized}
             />
             <Route path="/" component={HomeView} />
