@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
-import check from "../icons/check.svg";
+// import { withRouter } from "react-router-dom";
+// import check from "../icons/check.svg";
 import "../styles/RegisterView.scss";
 
 class RegisterView extends React.Component {
@@ -12,7 +12,7 @@ class RegisterView extends React.Component {
   checkPassword = (event) => {
     let password = document.getElementById("password").value;
     let passwordRep = document.getElementById("repeatPassword").value;
-    if (password.length != 0 && password === passwordRep) {
+    if (password.length !== 0 && password === passwordRep) {
       this.setState({ passwordCheck: "form-control is-valid" });
     } else {
       this.setState({ passwordCheck: "form-control" });

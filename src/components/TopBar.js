@@ -19,12 +19,15 @@ class TopBar extends React.Component {
     return (
       <nav className=" topContainer nav d-flex justify-content-between">
         <div className="topLogo">
-          <img src={logo} style={{ height: "inherit" }} />
+          <img src={logo} style={{ height: "inherit" }} alt="Best Travels"/>
         </div>
         {!isAuthorized && (
           <div className="topBar">
             <Link to="/" className="nav-link active">
               Home
+            </Link>
+            <Link to="/favourite" className="nav-link active">
+              Favourites List
             </Link>
             <Link to="/contacts" className="nav-link active">
               Contact Us

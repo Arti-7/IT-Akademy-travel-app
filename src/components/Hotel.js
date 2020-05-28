@@ -3,7 +3,10 @@ import "../styles/MainContainer.scss";
 import { Link } from 'react-router-dom';
 import LikeButton from "./LikeButton/LikeButton"
 
-const Hotel = (element,props) => {
+class Hotel extends React.Component {
+
+  render(){
+    const {element,symbol} = this.props;
     return (
        <div className="hotel" > 
             <img src={element.image} alt={element.title}/>
@@ -13,11 +16,12 @@ const Hotel = (element,props) => {
               </Link>
               <div className="location-and-price">
                 <div className="text-muted">{element.location}</div>
-                <div className="price-btn">{element.price}{props.symbol}</div>
+                <div className="price-btn">{element.price}{symbol}</div>
 <LikeButton hotel={element}/>
               </div>
             </div>
             </div>     
     );
 };
+}
 export default Hotel;

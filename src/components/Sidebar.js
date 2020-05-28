@@ -2,7 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import "../styles/Sidebar.scss";
 import Modal from "./Modal";
-import Spinner from "../icons/Spinner.svg"
+import Spinner from "../icons/Spinner.svg";
+import {connect} from "react-redux";
+import rates from "../utils/rates";
 
 class Sidebar extends React.Component {
   state = {
@@ -13,23 +15,25 @@ class Sidebar extends React.Component {
     this.setState((state) => ({ modalOpen: !state.modalOpen }));
   };
 
+ 
+
   render() {
     return (
-      this.props.sidebar_data.length > 0 ? 
+      this.props.bestHotels.length > 0 ? 
       <div className="main-sidebar">
         <p className="title font-weight-bolder">More than just hotels</p>
 
-        {this.props.sidebar_data.map((element, index) => {
+        {this.props.bestHotels.map((element, index) => {
           return (
             <div className="sidebar-hotel" key={index}>
-              <img src={element.image} />
+              <img src={element.image} alt={element.name}/>
               <div className="sidebar-hotel__information  d-flex flex-column bd-highlight mb-3">
                 <p className="sidebar-hotel-name font-weight-bolder">
                   {element.title}
                 </p>
                 <p className="location text-muted">{element.location}</p>
                 <div className="price">
-                  {element.price}
+                {Math.round(parseInt(element.price) * rates[this.props.currency])}
                   {this.props.symbol}
                 </div>
               </div>
@@ -54,8 +58,13 @@ class Sidebar extends React.Component {
         )}
         {this.state.modalOpen && <Modal onClose={this.toggleModal}></Modal>}
       </div>
-     : <div className="spinner-side"><img src={Spinner} style={{width: "300px"}}/></div>);
+     : <div className="spinner-side"><img src={Spinner} style={{width: "300px"}} alt="Loading"/></div>);
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    bestHotels: state.bestHotels
+  } 
+  }
 
-export default Sidebar;
+export default connect(mapStateToProps)(Sidebar);

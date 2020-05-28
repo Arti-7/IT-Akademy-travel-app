@@ -26,7 +26,7 @@ class Header extends React.Component {
       price: parseInt(event.target.value),
     });
   };
-
+  
   handleConvertion = (event) => {
   this.props.convertValues(event.target.value);
   };
@@ -39,7 +39,7 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="search-bar">
-          <img src={search}/>
+          <img src={search} alt="Search"/>
           <input
             type="text"
             className="search-field"
@@ -49,7 +49,7 @@ class Header extends React.Component {
         </div>
         <div className="lower-line">
           <div className="price-bar">
-            <div> &#128176;</div>
+            <span role="img" aria-label="price">&#128176;</span>
             <input
               type="text"
               className="price-field"

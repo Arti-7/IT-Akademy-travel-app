@@ -11,13 +11,17 @@ import {url} from "./utils/api";
 import PrivateRoute from './PrivateRoute';
 import AddHotelView from "./views/AddHotelView";
 import UsersHotelView from "./views/UsersHotelView";
-import Contacts from "./views/Contacts"
+import Contacts from "./views/Contacts";
+import FavouriteView from "./views/FavouriteView";
+import {connect} from "react-redux";
+import {getHotels} from "./store/actions/hotels-actions";
 
 class App extends React.Component {
 
 state = {
   user: null,
-  isAuthorized: false
+  isAuthorized: false,
+  hotels: []
 };
 
 
@@ -55,6 +59,14 @@ else {
 
 componentDidMount(){
   this.verifyUserStatus();
+  axios
+  .get('https://nodejs-mysql-it-academy.herokuapp.com/hotels')
+  .then((res) => {
+    this.setState({
+      dataFromApi: res.data,        
+    });
+  })
+  this.props.getHotels();
 }
 
   render() {
@@ -86,7 +98,8 @@ componentDidMount(){
               user={this.state.user}
               isAuthorized={this.state.isAuthorized}
             />
-            <Route path="/" component={HomeView} />
+            <Route path="/favourite" component={FavouriteView}/>
+            <Route path="/" component={HomeView}  />
 
           </Switch>
         </Router>
@@ -94,4 +107,12 @@ componentDidMount(){
     );
   }
 }
-export default App;
+const mapStateToProps = (state) => ({
+  hotels: state.hotels,
+  })
+  
+  const mapDispatchToProps = (dispatch) => ({
+    getHotels: (hotels) => dispatch(getHotels()),
+  })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

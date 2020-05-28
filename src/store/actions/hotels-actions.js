@@ -24,6 +24,9 @@ axios.get('https://nodejs-mysql-it-academy.herokuapp.com/hotels')
 dispatch({
     type: "GET_HOTELS_SUCCESS",
     payload: res.data,
+    payloadBest: res.data.filter((hotel) => {
+        return hotel.recommended;
+    })
 
 })
 })
@@ -47,5 +50,12 @@ export const addToFavourites = (hotel) => {
     return {
         type: "ADD_TO_FAVOURITES",
         payload: hotel
+    }
+}
+
+export const removeFromFavourites = (hotelId) => {
+    return {
+        type: "REMOVE_FROM_FAVOURITES",
+        payload: hotelId,
     }
 }
