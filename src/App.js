@@ -75,7 +75,7 @@ componentDidMount(){
     return (
       <div className="App">
       <Notifications/>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
         <TopBar 
         isAuthorized={this.state.isAuthorized} 
         user={this.state.user}

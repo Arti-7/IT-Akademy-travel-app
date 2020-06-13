@@ -24,7 +24,8 @@ component = shallow(<LikeButton {...mockedProps}/>)
 
     it('should click the button',() => {
         component.find('fav-button').simulate('click');
-        const instance = component.instance();
+        let instance = component.instance();
+        instance.handleClick = jest.fn()
         expect(instance.handleClick).toHaveBeenCalled();
     })
 })
