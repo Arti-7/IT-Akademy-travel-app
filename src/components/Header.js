@@ -12,6 +12,7 @@ class Header extends React.Component {
     price: 0,
     name: "",
   };
+inputRef = React.createRef();
 
   handleSearch = (event) => {
     this.props.filterHotels(this.state.price, event.target.value.toLowerCase());
@@ -35,6 +36,11 @@ class Header extends React.Component {
     this.props.dispatch(saveText("new text is here"));
   };
 
+
+  componentDidMount() {
+    this.inputRef.current.focus();
+  }
+
   render(props) {
     return (
       <div className="header">
@@ -45,6 +51,7 @@ class Header extends React.Component {
             className="search-field"
             placeholder="Enter location"
             onChange={this.handleSearch}
+            ref={this.inputRef}
           />
         </div>
         <div className="lower-line">
@@ -55,6 +62,7 @@ class Header extends React.Component {
               className="price-field"
               placeholder="Min. price"
               onChange={this.handleFilterPrice}
+              
             />
             {this.props.symbol}
           </div>

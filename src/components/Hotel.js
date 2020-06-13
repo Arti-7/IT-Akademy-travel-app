@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/MainContainer.scss";
 import { Link } from 'react-router-dom';
-import LikeButton from "./LikeButton/LikeButton"
+import LikeButton from "./LikeButton/LikeButton";
+import PropTypes from "prop-types";
 
 class Hotel extends React.Component {
 

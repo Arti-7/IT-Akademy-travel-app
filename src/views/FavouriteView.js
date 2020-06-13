@@ -17,7 +17,7 @@ const dispatch = useDispatch();
 dispatch(removeFromFavourites(id))
     }
 
-return <div>
+return <>
     <h1>Favourite List</h1>
     <input type="text" onChange={handleChange}/>
     <p>{inputValue}</p>
@@ -38,7 +38,7 @@ return <div>
 
     }
 
-</div>
+</>
 }
 
 export default FavouriteView;

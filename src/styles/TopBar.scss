@@ -3,6 +3,7 @@
   height: inherit;
   align-self: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .topContainer {
@@ -15,4 +16,11 @@
   height: 120px;
   margin-top: 0;
   padding-top: 0;
+}
+
+.sticky {
+  height: 80px;
+  display: flex;
+  align-content: center;
+  position: fixed
 }

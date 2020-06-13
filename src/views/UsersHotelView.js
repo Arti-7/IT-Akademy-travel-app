@@ -65,6 +65,10 @@ class UsersHotelView extends React.Component {
         this.switchSort();
         
       });
+
+
+
+    
   }
 
   componentDidUpdate(prevProps, prevState) {

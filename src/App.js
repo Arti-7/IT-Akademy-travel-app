@@ -15,8 +15,9 @@ import Contacts from "./views/Contacts";
 import FavouriteView from "./views/FavouriteView";
 import {connect} from "react-redux";
 import {getHotels} from "./store/actions/hotels-actions";
+import Notifications from "./components/Notifications/Notifications";
 
-class App extends React.Component {
+export class App extends React.Component {
 
 state = {
   user: null,
@@ -59,13 +60,13 @@ else {
 
 componentDidMount(){
   this.verifyUserStatus();
-  axios
-  .get('https://nodejs-mysql-it-academy.herokuapp.com/hotels')
-  .then((res) => {
-    this.setState({
-      dataFromApi: res.data,        
-    });
-  })
+  // axios
+  // .get('https://nodejs-mysql-it-academy.herokuapp.com/hotels')
+  // .then((res) => {
+  //   this.setState({
+  //     dataFromApi: res.data,        
+  //   });
+  // })
   this.props.getHotels();
 }
 
@@ -73,6 +74,7 @@ componentDidMount(){
     console.log(this.state.isAuthorized)
     return (
       <div className="App">
+      <Notifications/>
         <Router>
         <TopBar 
         isAuthorized={this.state.isAuthorized} 

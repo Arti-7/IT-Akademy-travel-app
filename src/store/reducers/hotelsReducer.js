@@ -3,6 +3,7 @@ const initialState = {
   hotels: [],
   bestHotels: [],
   favourites: [],
+  userHotels:[],
 };
 
 const hotelsReducer = (state = initialState, action) => {
@@ -20,6 +21,10 @@ const hotelsReducer = (state = initialState, action) => {
           ...state.favourites.filter((hotel) => hotel.id !== action.payload),
         ],
       };
+      case "GET_USER_HOTELS_SUCCESS":
+        return {
+          ...state, userHotels: action.payload
+        }
     default:
       return state;
   }

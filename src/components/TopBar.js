@@ -13,6 +13,8 @@ class TopBar extends React.Component {
     this.props.verifyUserStatus();
   };
 
+
+
   render() {
     const { isAuthorized, user } = this.props;
     console.log({ user });

@@ -1,14 +1,17 @@
 import React from "react";
 import MainContainer from "../components/MainContainer";
-import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import rates from "../utils/rates"
-import axios from 'axios';
+import Header from "../components/Header";
+import rates from "../utils/rates";
+import axios from "axios";
+// import { connect } from "react-redux";
+// import {getHotels} from "../store/actions/hotels-actions";
 import {convertValues, sortHotels, filterData, changeCurrency} from "../displaySettings/displaySettings";
 
-class HomeView extends React.Component {
+class UsersHotelView extends React.Component {
   state = {
     hotels: [],
+    bestHotels: [],
     sort: true,
     currency: "USD",
     symbol: "$",
@@ -24,6 +27,7 @@ class HomeView extends React.Component {
       symbol: x.symbol
     })
   }
+
 
 
   filterHotels = (price, name) => {
@@ -43,38 +47,42 @@ class HomeView extends React.Component {
     this.filterHotels(this.state.searchPrice, this.state.searchLocation);
   };
 
-
-
   componentDidMount() {
-    axios
-    .get('https://nodejs-mysql-it-academy.herokuapp.com/hotels')
-    .then((result) => {
-      this.setState({
-        dataFromApi: result.data,        
-      });
-      this.switchSort();
-    })
-      
+    // const token = localStorage.getItem("token");
+    // const options = {
+    //   headers: {
+    //     "x-access-token": token,
+    //   },
+    // };
+
+    // axios
+    //   .get("https://nodejs-mysql-it-academy.herokuapp.com/my-hotels", options)
+    //   .then((res) => {
+    //     this.setState({
+    //       dataFromApi: res.data,
+    //     });
+    //     console.log(this.state.dataFromApi);
+    //     this.switchSort();
+        
+    //   });
+
+
+
+    
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.currency !== prevState.currency) {
       this.setState(  {      
-        hotels: changeCurrency(prevState,this.state.hotels,rates, this.state.currency),
-        
+        hotels: changeCurrency(prevState,this.state.dataFromApi,rates, this.state.currency),
       })   
-      
       this.filterHotels(this.state.searchPrice, this.state.searchLocation);
     }
   }
 
-
-
-
-  
   render() {
     return (
-      <>     
+      <div>     
         <Header
           filterHotels={this.filterHotels}
           sort={this.state.sort}
@@ -93,9 +101,10 @@ class HomeView extends React.Component {
           symbol={this.state.symbol} />
           </React.Fragment>
         </div>
-      </>
+      </div>
     );
   }
 }
 
-export default HomeView;
+
+export default UsersHotelView;
