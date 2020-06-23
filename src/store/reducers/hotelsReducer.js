@@ -21,6 +21,12 @@ const hotelsReducer = (state = initialState, action) => {
           ...state.favourites.filter((hotel) => hotel.id !== action.payload),
         ],
       };
+
+      // case "UNFAVOURITE":
+      //   return {
+      //     ...state, favourites: [...state.favourites.filter(())]
+      //   }
+
       case "GET_USER_HOTELS_SUCCESS":
         return {
           ...state, userHotels: action.payload

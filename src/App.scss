@@ -5,6 +5,9 @@
   // max-width: 90%;
   border-radius: 30px;
   margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .MainSection {
@@ -13,3 +16,5 @@
   width: 100%;
   display: flex;
 }
+
+
